@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Yeni Randevu Al</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 40px; background-color: #f0f2f5; }
+        .form-container { background: white; padding: 30px; border-radius: 12px; max-width: 500px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #007bff; text-align: center; margin-bottom: 20px; }
+        label { font-weight: bold; display: block; margin-top: 10px; color: #555; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        button { background: #28a745; color: white; border: none; padding: 15px; width: 100%; cursor: pointer; border-radius: 6px; font-weight: bold; margin-top: 25px; font-size: 16px; transition: 0.3s; }
+        button:hover { background: #218838; }
+        .error { color: #d9534f; background: #fdf7f7; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 15px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #007bff; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Randevu Formu</h2>
+        
+        <div th:if="${hata}" class="error" th:text="${hata}"></div>
+        
+        <form th:action="@{/kaydet}" th:object="${randevu}" method="post">
+            
+            <label>Ad Soyad:</label>
+            <input type="text" th:field="*{adSoyad}" placeholder="Müşteri Adı Soyadı" required>
+            
+            <label>Telefon:</label>
+            <input type="text" th:field="*{telefon}" placeholder="05xx xxx xx xx">
+            
+            <label>Randevu Tarihi:</label>
+            <input type="date" th:field="*{tarih}" required>
+            
+            <label>Saat:</label>
+            <input type="time" th:field="*{saat}" required>
+
+            <label>Hizmet Tipi:</label>
+            <input type="text" th:field="*{hizmetTipi}" placeholder="Örn: Muayene, Bakım vb.">
+            
+            <label>Notlar:</label>
+            <input type="text" th:field="*{notlar}" placeholder="Eklemek istediğiniz notlar">
+            
+            <button type="submit">Randevuyu Sisteme Kaydet</button>
+        </form>
+        
+        <a href="/" class="back-link">← Ana Sayfaya Dön</a>
+    </div>
+
+</body>
+</html>
